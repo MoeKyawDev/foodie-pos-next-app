@@ -1,10 +1,10 @@
-import MenuPage from "../menu";
+import BackofficeLayout from "@/components/backofficeLayout";
 
 const MenuCategoryPage = () => {
   return (
-    <div>
+    <BackofficeLayout>
       <h1>MenuCategoryPage</h1>
-    </div>
+    </BackofficeLayout>
   );
 };
 
