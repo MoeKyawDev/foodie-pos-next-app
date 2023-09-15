@@ -4,12 +4,11 @@ import config from "@/config";
 import { Menu } from "@/types/menu";
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import CreateMenu from "./CreateMenu";
+import CreateMenu from "../../../components/createMenu/CreateMenu";
 
 const MenuPage = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
   const [open, setOpen] = useState<boolean>(false);
-  console.log("Current menus: ", menus);
 
   // call fetchMenus function once at first rendering
   useEffect(() => {
