@@ -1,14 +1,15 @@
 import BackofficeLayout from "@/components/backofficeLayout";
 import MenuCard from "@/components/menuCard/MenuCard";
 import config from "@/config";
-import { Menu } from "@/types/menu";
+import { useAppSelector } from "@/store/hooks";
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import CreateMenu from "../../../components/createMenu/CreateMenu";
 
 const MenuPage = () => {
-  const [menus, setMenus] = useState<Menu[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const menus = useAppSelector((store) => store.menu.items);
+  // const dispatch = useAppDispatch()
 
   // call fetchMenus function once at first rendering
   useEffect(() => {
@@ -19,7 +20,6 @@ const MenuPage = () => {
   const fetchMenus = async () => {
     const response = await fetch(`${config.apiBaseUrl}/menu`);
     const menus = await response.json();
-    setMenus(menus);
   };
 
   return (
@@ -38,7 +38,7 @@ const MenuPage = () => {
         </Box>
 
         {/* render CreateMenu Component */}
-        <CreateMenu open={open} setOpen={setOpen} setMenus={setMenus} />
+        <CreateMenu open={open} setOpen={setOpen} />
 
         <Box sx={{ display: "flex", flexWrap: "wrap" }}>
           {/* display menu with MenuCard */}

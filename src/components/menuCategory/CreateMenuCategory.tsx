@@ -1,7 +1,9 @@
 // CreateMenu Component with MUI Dialog box
 
 import config from "@/config";
-import { CreateMenuCategoryPayload, MenuCategory } from "@/types/menuCategory";
+import { useAppDispatch } from "@/store/hooks";
+import { setMenuCategories } from "@/store/slices/menuCategorySlice";
+import { CreateMenuCategoryPayload } from "@/types/menuCategory";
 import {
   Box,
   Button,
@@ -17,7 +19,6 @@ import { useState } from "react";
 interface Props {
   open: boolean;
   setOpen: (value: boolean) => void;
-  setMenuCategories: (menuCategories: MenuCategory[]) => void;
 }
 
 const defaultNewMenuCategory = {
@@ -25,7 +26,8 @@ const defaultNewMenuCategory = {
   isAvailable: true,
 };
 
-const CreateMenuCategory = ({ open, setOpen, setMenuCategories }: Props) => {
+const CreateMenuCategory = ({ open, setOpen }: Props) => {
+  const dispatch = useAppDispatch();
   const [newMenuCategory, setNewMenuCategory] =
     useState<CreateMenuCategoryPayload>(defaultNewMenuCategory);
 
@@ -41,7 +43,7 @@ const CreateMenuCategory = ({ open, setOpen, setMenuCategories }: Props) => {
     const menuCategories = await response.json();
 
     //update menus
-    setMenuCategories(menuCategories);
+    dispatch(setMenuCategories(menuCategories));
     setNewMenuCategory(defaultNewMenuCategory);
 
     //close dialog box

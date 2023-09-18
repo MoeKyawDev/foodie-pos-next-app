@@ -1,13 +1,13 @@
 import BackofficeLayout from "@/components/backofficeLayout";
 import ItemCard from "@/components/itemCard/ItemCard";
 import CreateMenuCategory from "@/components/menuCategory/CreateMenuCategory";
-import { MenuCategory } from "@/types/menuCategory";
+import { useAppSelector } from "@/store/hooks";
 import CategoryIcon from "@mui/icons-material/Category";
 import { Box, Button } from "@mui/material";
 import { useState } from "react";
 
 const MenuCategoryPage = () => {
-  const [menuCategories, setMenuCategories] = useState<MenuCategory[]>([]);
+  const menuCategories = useAppSelector((store) => store.menuCategory.items);
   const [open, setOpen] = useState<boolean>(false);
   return (
     <BackofficeLayout>
@@ -25,11 +25,7 @@ const MenuCategoryPage = () => {
         </Box>
 
         {/* render CreateMenuCategory Component */}
-        <CreateMenuCategory
-          open={open}
-          setOpen={setOpen}
-          setMenuCategories={setMenuCategories}
-        />
+        <CreateMenuCategory open={open} setOpen={setOpen} />
 
         <Box sx={{ display: "flex", flexWrap: "wrap" }}>
           {/* display menu with MenuCard */}
