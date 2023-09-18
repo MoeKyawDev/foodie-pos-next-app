@@ -1,6 +1,6 @@
 ## Episode 18
 1. environment in next js ( `.env` )
-2. API folder ( next js handler ())
+2. API folder ( next js `handler(req,res){...}`)
 3. Dynamic route ( `[id]` folder )
 4. Next Link component ( `<Link href="" > </Link>` )
 
