@@ -6,6 +6,11 @@ export interface CreateMenuPayload {
   assetUrl?: string;
 }
 
+export interface UpdateMenuPayload {
+  id: number;
+  name: string;
+}
+
 export interface Menu extends CreateMenuPayload {
   id: number;
   isArchived: boolean;

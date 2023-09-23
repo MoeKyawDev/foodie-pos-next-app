@@ -1,7 +1,6 @@
 import BackofficeLayout from "@/components/backofficeLayout";
 import MenuCard from "@/components/menuCard/MenuCard";
-import config from "@/config";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import CreateMenu from "../../../components/createMenu/CreateMenu";
@@ -9,18 +8,12 @@ import CreateMenu from "../../../components/createMenu/CreateMenu";
 const MenuPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const menus = useAppSelector((store) => store.menu.items);
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   // call fetchMenus function once at first rendering
   useEffect(() => {
     //fetchMenus();
   }, []);
-
-  //fetch menus from server
-  const fetchMenus = async () => {
-    const response = await fetch(`${config.apiBaseUrl}/menu`);
-    const menus = await response.json();
-  };
 
   return (
     <BackofficeLayout>

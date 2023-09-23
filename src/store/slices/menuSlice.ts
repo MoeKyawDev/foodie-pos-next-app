@@ -1,11 +1,48 @@
-import { MenuState } from "@/types/menu";
-import { createSlice } from "@reduxjs/toolkit";
+import config from "@/config";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  CreateMenuPayload,
+  MenuState,
+  UpdateMenuPayload,
+} from "./../../types/menu";
 
 const initialState: MenuState = {
   items: [],
   isLoading: false,
   error: null,
 };
+
+export const createMenu = createAsyncThunk(
+  "menu/createMenu",
+  async (payload: CreateMenuPayload, thunkApi) => {
+    const response = await fetch(`${config.apiBaseUrl}/menu`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const menus = await response.json();
+    thunkApi.dispatch(setMenus(menus));
+  }
+);
+
+export const updateMenu = createAsyncThunk(
+  "menu/updateMenu",
+  async (payload: UpdateMenuPayload, thunkApi) => {
+    console.log(payload);
+
+    /* const response = await fetch(`${config.apiBaseUrl}/menu`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const menus = await response.json();
+    thunkApi.dispatch(setMenus(menus)); */
+  }
+);
 
 export const menuSlice = createSlice({
   name: "menu",

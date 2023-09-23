@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuCategoryReducer from "./slices/menuCategorySlice";
-import menuReducer from "./slices/menuSlice";
+import menuCategoryReducer from "../store/slices/menuCategorySlice";
+import menuReducer from "../store/slices/menuSlice";
 
 export const store = configureStore({
   reducer: {
